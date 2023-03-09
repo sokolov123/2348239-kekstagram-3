@@ -13,3 +13,5 @@ function getLenString(lenStr, n) {
     return true;
   }
 }
+getRandom(0, 4);
+getLenString('psads', 4);
