@@ -1,22 +1,19 @@
 function getRandom(min, max) {
   if (min >= max) {
-    console.log('Пожалуйста, введите корректные данные');
-    return -1; //функция вернёт -1 как заведомо невозможное число
+    return 'Пожалуйста, введите корректные данные';
   }
-  return Math.random() * (max - min) + min;
+  return  Math.floor(Math.random() * (max - min) + min);
 }
 
-console.log(Math.round(getRandom(1, 10000)));
-
-
-function getLenString(lenStr, n) {
-  if (lenStr.length >= n) {
-    return false;
-  }
-  else {
-    return true;
-  }
+const data = [];
+let i = 1;
+for (i = 1; i < 26; i++) {
+  data.push({id: i, url: `photos/${i}.jpg`, description: photoDescription(), likes: getRandom(15, 200), comments: getRandom(0, 200)});
 }
 
-
-console.log(getLenString('adfsadfbadrhh', 33));
+//пусть будет так, чтобы были рандомные описания фото
+function photoDescription() {
+  const comments = ['ничоси', 'прикольная фотка', 'интересненько', 'я комментарий', 'крутая фотокарточка',
+    'Виталь, ты же говорил ты в командировке', 'так им и надо', 'не ну вы посмтрите на это...', 'делааааа.....', 'првиет'];
+  return comments[getRandom(0, 9)];
+}
