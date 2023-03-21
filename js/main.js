@@ -17,6 +17,5 @@ photo.forEach((url, lickes, comments) => {
   pictInfo.querySelector('.picture__comments').textContent = comments;
   similarListElement.appendChild(pictElement);
 });
-
+// Задание 7 часть 2
 similarListElement.appendChild(similarListFragment);
-
