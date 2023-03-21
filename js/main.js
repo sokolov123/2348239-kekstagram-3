@@ -9,14 +9,13 @@ const photo = getData(usersNum);
 
 const similarListFragment = document.createDocumentFragment();
 
-photo.forEach((url, lickes, comments) => {
+photo.forEach((url, likes, comments) => {
   const pictElement = similarPicture.cloneNode(true);
   const pictInfo = similarPictInfo.cloneNode(true);
   pictElement.querySelector('.picture__img').src = url;
-  pictInfo.querySelector('.picture__likes').textContent = lickes;
+  pictInfo.querySelector('.picture__likes').textContent = likes;
   pictInfo.querySelector('.picture__comments').textContent = comments;
   similarListElement.appendChild(pictElement);
 });
-
+// Задание 7 часть 2
 similarListElement.appendChild(similarListFragment);
-
