@@ -1,8 +1,6 @@
 const pictureElement = document.querySelector('.pictures');
 const picture = document.querySelector('#picture').content.querySelector('.picture');
-
 const pictureInfoElement = picture.querySelector('.picture__info');
-
 
 export function renderPhotos(photos) {
   const pictureFragment = document.createDocumentFragment();
