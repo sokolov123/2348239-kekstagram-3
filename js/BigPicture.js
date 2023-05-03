@@ -1,22 +1,39 @@
-const imgUpload = document.querySelector('.img-upload__overlay');
-const fileInput = document.querySelector('.img-upload__input');
-const closeImageButton = document.querySelector('.img-upload__cancel');
+import {isEscapeKey} from './util.js';
+import {renderComments, removeEventsComments} from './comments.js';
 
-function closeimageUpload() {
-  imgUpload.classList.add('hidden');
-  document.addEventListener('keydown', escapeKey);
-}
+const bigPictureSection = document.querySelector('.big-picture');
+const bigPictureImg = bigPictureSection.querySelector('.big-picture__img img');
+const bigPictureSocial = bigPictureSection.querySelector('.big-picture__social');
+const bigPictureCaption = bigPictureSection.querySelector('.social__caption');
+const bigPictureClose = bigPictureSection.querySelector('.big-picture__cancel');
 
-function escapeKey (ev) {
-  if (ev.key === 'Escape' || ev.key === 'Esc') {
-    closeimageUpload();
+const onDocumentKeydown = (evt) => {
+  if (isEscapeKey(evt)) {
+    evt.preventDefault();
+    closeBigPictureModal();
   }
+};
+
+const renderBigPicture = (picture) => {
+  document.body.classList.add('modal-open');
+  bigPictureImg.src = picture.url;
+  bigPictureCaption.textContent = bigPictureImg.alt = picture.description;
+  bigPictureSocial.querySelector('.likes-count').textContent = picture.likes;
+  renderComments(picture);
+};
+
+function openBigPictureModal(picture){
+  bigPictureSection.classList.remove('hidden');
+  renderBigPicture(picture);
+  bigPictureClose.addEventListener('click', closeBigPictureModal);
+  document.addEventListener('keydown',onDocumentKeydown);
 }
 
-function imageUpload() {
-  imgUpload.classList.remove('hidden');
-  document.addEventListener('keydown', escapeKey);
+function closeBigPictureModal(){
+  document.body.classList.remove('modal-open');
+  bigPictureSection.classList.add('hidden');
+  document.removeEventListener('keydown',onDocumentKeydown);
+  removeEventsComments();
 }
 
-fileInput.addEventListener('change', imageUpload);
-closeImageButton.addEventListener('click', closeimageUpload);
+export {openBigPictureModal};

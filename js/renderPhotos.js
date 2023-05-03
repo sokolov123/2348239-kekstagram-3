@@ -1,24 +1,19 @@
-const pictureElement = document.querySelector('.pictures');
-const picture = document.querySelector('#picture').content.querySelector('.picture');
+import { renderThumbnails } from './rendering.js';
+import { openBigPictureModal } from './BigPicture.js';
 
-const pictureInfoElement = picture.querySelector('.picture__info');
+const picturesElement = document.querySelector('.pictures');
 
-
-export function renderPhotos(photos) {
-  const pictureFragment = document.createDocumentFragment();
-  photos.forEach((photo) => {
-    const photoElement = renderPhoto(photo);
-    pictureFragment.appendChild(photoElement);
+const renderGallery = (pictures) => {
+  picturesElement.addEventListener('click', (evt) => {
+    const picture = evt.target.closest('.picture');
+    if(picture){
+      evt.preventDefault();
+      const pictureId = Number(picture.dataset.id);
+      const pictureData = pictures.find((elem) => elem.id === pictureId);
+      openBigPictureModal(pictureData);
+    }
   });
-  pictureElement.appendChild(pictureFragment);
-}
+  renderThumbnails(pictures);
+};
 
-function renderPhoto (photo) {
-  const pctElement = picture.cloneNode(true);
-  const pictInfo = pictureInfoElement.cloneNode(true);
-  pctElement.querySelector('.picture__img').src = photo.url;
-  pictInfo.querySelector('.picture__likes').textContent = photo.likes;
-  pictInfo.querySelector('.picture__comments').textContent = photo.comments;
-  pctElement.appendChild(pictInfo);
-  return pctElement;
-}
+export {renderGallery};

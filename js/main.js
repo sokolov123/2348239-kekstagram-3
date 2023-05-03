@@ -1,9 +1,6 @@
-import {renderPhotos} from './renderPhotos.js';
-import {getData} from './data.js';
-import './BigPicture.js';
+import { getPhotos } from './data.js';
+import { renderGallery } from './renderPhotos.js';
+import { renderForm } from './form.js';
 
-const usersNum = 25;
-
-const photos = getData(usersNum);
-
-renderPhotos(photos);
+renderForm();
+renderGallery(getPhotos());
