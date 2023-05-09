@@ -1,4 +1,4 @@
-import { isEscapeKey } from './util.js';
+import { escKey } from './util.js';
 
 const messageSuccess = document.querySelector('#success').content;
 const messageError = document.querySelector('#error').content;
@@ -9,7 +9,7 @@ const removeElement = (evt) => {
   if(!section){
     return;
   }
-  if(evt.target.nodeName === 'SECTION' || evt.target.nodeName === 'BUTTON' || isEscapeKey(evt)){
+  if(evt.target.nodeName === 'SECTION' || evt.target.nodeName === 'BUTTON' || escKey(evt)){
     section.remove();
     document.removeEventListener('click', removeElement);
     document.removeEventListener('keydown',removeElement);

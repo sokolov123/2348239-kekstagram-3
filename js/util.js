@@ -30,7 +30,6 @@ const showAlert = (message) => {
   }, ALERT_SHOW_TIME);
 };
 
-const isEscapeKey = (evt) => evt.key === 'Escape';
-const isEnterKey = (evt) => evt.key === 'Enter';
+const escKey = (evt) => evt.key === 'Escape';
 
-export { getRandomArrayElement, isEscapeKey, isEnterKey, showAlert };
+export { getRandomArrayElement, escKey, showAlert };

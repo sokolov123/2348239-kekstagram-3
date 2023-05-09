@@ -1,5 +1,5 @@
 import { renderThumbnails } from './rendering.js';
-import { openBigPictureModal } from './BigPicture.js';
+import { openBigPicture } from './BigPicture.js';
 
 const picturesElement = document.querySelector('.pictures');
 
@@ -10,7 +10,7 @@ const renderGallery = (pictures) => {
       evt.preventDefault();
       const pictureId = Number(picture.dataset.id);
       const pictureData = pictures.find((elem) => elem.id === pictureId);
-      openBigPictureModal(pictureData);
+      openBigPicture(pictureData);
     }
   });
   renderThumbnails(pictures);

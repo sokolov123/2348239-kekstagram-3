@@ -1,39 +1,41 @@
-import {isEscapeKey} from './util.js';
-import {renderComments, removeEventsComments} from './comments.js';
+import {escKey} from './util.js';
+import {renderComment, evntComment} from './comments_render.js';
 
-const bigPictureSection = document.querySelector('.big-picture');
-const bigPictureImg = bigPictureSection.querySelector('.big-picture__img img');
-const bigPictureSocial = bigPictureSection.querySelector('.big-picture__social');
-const bigPictureCaption = bigPictureSection.querySelector('.social__caption');
-const bigPictureClose = bigPictureSection.querySelector('.big-picture__cancel');
+const BigPictureSelect = document.querySelector('.big-picture');
 
-const onDocumentKeydown = (evt) => {
-  if (isEscapeKey(evt)) {
+const BigPictureImg = BigPictureSelect.querySelector('.big-picture__img img');
+const BigPictureCapt = BigPictureSelect.querySelector('.social__caption');
+const BigPictureSocial = BigPictureSelect.querySelector('.big-picture__social');
+const BigPictureClose = BigPictureSelect.querySelector('.big-picture__cancel');
+
+
+const pressKey = (evt) => {
+  if (escKey(evt)) {
     evt.preventDefault();
-    closeBigPictureModal();
+    closeBigPicture();
   }
 };
 
 const renderBigPicture = (picture) => {
   document.body.classList.add('modal-open');
-  bigPictureImg.src = picture.url;
-  bigPictureCaption.textContent = bigPictureImg.alt = picture.description;
-  bigPictureSocial.querySelector('.likes-count').textContent = picture.likes;
-  renderComments(picture);
+  BigPictureImg.src = picture.url;
+  BigPictureCapt.textContent = BigPictureImg.alt = picture.description;
+  BigPictureSocial.querySelector('.likes-count').textContent = picture.likes;
+  renderComment(picture);
 };
 
-function openBigPictureModal(picture){
-  bigPictureSection.classList.remove('hidden');
+function openBigPicture(picture){
+  BigPictureSelect.classList.remove('hidden');
   renderBigPicture(picture);
-  bigPictureClose.addEventListener('click', closeBigPictureModal);
-  document.addEventListener('keydown',onDocumentKeydown);
+  BigPictureClose.addEventListener('click', closeBigPicture);
+  document.addEventListener('keydown',pressKey);
 }
 
-function closeBigPictureModal(){
+function closeBigPicture(){
   document.body.classList.remove('modal-open');
-  bigPictureSection.classList.add('hidden');
-  document.removeEventListener('keydown',onDocumentKeydown);
-  removeEventsComments();
+  BigPictureSelect.classList.add('hidden');
+  document.removeEventListener('keydown',pressKey);
+  evntComment();
 }
 
-export {openBigPictureModal};
+export {openBigPicture};

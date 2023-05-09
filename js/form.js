@@ -1,4 +1,4 @@
-import {isEscapeKey} from './util.js';
+import {escKey} from './util.js';
 import {addEventsScale, removeEventsScale} from './scale.js';
 import {addEventsEffects, removeEventsEffects} from './effect.js';
 
@@ -57,7 +57,7 @@ const addValidatorPristine = () => {
 const showModal = () => {
   overlay.classList.remove('hidden');
   body.classList.add('modal-open');
-  document.addEventListener('keydown',isEscapeKey);
+  document.addEventListener('keydown',escKey);
   addEventsScale();
   addEventsEffects();
 };
@@ -68,14 +68,14 @@ const hideModal = () => {
 
   overlay.classList.add('hidden');
   body.classList.remove('modal-open');
-  document.removeEventListener('keydown',isEscapeKey);
+  document.removeEventListener('keydown',escKey);
   closeBtn.removeEventListener('click', hideModal);
   removeEventsScale();
   removeEventsEffects();
 };
 
 const onDocumentKeydown = (evt) => {
-  if (isEscapeKey(evt) && !isTextFieldFocused()) {
+  if (escKey(evt) && !isTextFieldFocused()) {
     evt.preventDefault();
     hideModal();
   }

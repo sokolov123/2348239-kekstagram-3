@@ -1,6 +1,6 @@
-import { getData, sendData } from './api.js';
+import { getData, sendData } from './API.js';
 import { showAlert } from './util.js';
-import { renderGallery } from './renderGallery.js';
+import { renderGallery } from './renderPhotos.js';
 import { renderForm, setOnFormSubmit, hideModal } from './form.js';
 import { showSuccessMessage, showErrorMessage } from './message.js';
 
@@ -22,3 +22,7 @@ try {
 }
 
 renderForm();
+
+// подвигать структуру
+// объенить некоторые файлы, чот их много
+// если я забыл это удалить, то это заметки для меня
